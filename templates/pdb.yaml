@@ -1,0 +1,15 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: prometheus-server
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/instance: prometheus
+    app.kubernetes.io/component: server
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: prometheus
+      app.kubernetes.io/component: server
