@@ -16,6 +16,8 @@ data:
       alertmanagers:
         - static_configs:
             - targets: ['alertmanager.monitoring.svc.cluster.local:9093']
+    rule_files:
+      - /etc/prometheus/rules.yaml
     scrape_configs:
       - job_name: prometheus
         kubernetes_sd_configs:
