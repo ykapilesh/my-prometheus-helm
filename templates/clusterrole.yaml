@@ -12,34 +12,9 @@ rules:
       - nodes
       - nodes/proxy
       - nodes/metrics
+      - nodes/stats
+      - nodes/log
       - services
       - endpoints
       - pods
-      - ingresses
-      - configmaps
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - extensions
-      - networking.k8s.io
-    resources:
-      - ingresses/status
-      - ingresses
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - discovery.k8s.io
-    resources:
-      - endpointslices
-    verbs:
-      - get
-      - list
-      - watch
-  - nonResourceURLs:
-      - /metrics
-    verbs:
-      - get
+    verbs: ["get", "list", "watch"]
