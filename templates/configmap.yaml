@@ -101,6 +101,25 @@ data:
             regex: (.+)
             target_label: __metrics_path__
             replacement: /api/v1/nodes/${1}/proxy/metrics
+      - job_name: 'blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        static_configs:
+          - targets:
+              - http://prometheus-server.monitoring.svc.cluster.local
+              - http://grafana-grafana.monitoring.svc.cluster.local:3000
+              - http://alertmanager.monitoring.svc.cluster.local:9093
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter.monitoring.svc.cluster.local:9115
+      - job_name: 'pushgateway'
+        static_configs:
+          - targets: ['pushgateway.monitoring.svc.cluster.local:9091']
 
   rules.yaml: |-
     groups:
