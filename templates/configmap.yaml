@@ -117,4 +117,16 @@ data:
             target_label: pod
           - source_labels: [__address__]
             target_label: instance
-  rules.yaml: '{}'
+  rules.yaml: |-
+    groups:
+      - name: Always-Firing-Alert
+        rules:
+          - alert: AlwaysFiring
+            expr: vector(1)
+            for: 10s
+            labels:
+              severity: test
+            annotations:
+              summary: "This is a test alert that always fires"
+              description: "This alert is firing just to test the end-to-end setup"
+
