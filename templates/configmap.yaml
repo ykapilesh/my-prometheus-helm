@@ -120,6 +120,18 @@ data:
       - job_name: 'pushgateway'
         static_configs:
           - targets: ['pushgateway.monitoring.svc.cluster.local:9091']
+      - job_name: 'my-python-app'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - default
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_label_app]
+            regex: my-python-app
+            action: keep
+          - target_label: instance
+
 
   rules.yaml: |-
     groups:
