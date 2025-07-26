@@ -123,6 +123,10 @@ data:
       - job_name: 'my-python-app'
         static_configs:
           - targets: ['my-python-app.default.svc.cluster.local:5000']
+      - job_name: 'java-h2-audit'
+        metrics_path: /actuator/prometheus
+        static_configs:
+          - targets: ['java-h2-audit.default.svc.cluster.local:8080']
 
 
   rules.yaml: |-
