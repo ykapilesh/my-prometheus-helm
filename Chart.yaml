@@ -3,4 +3,4 @@ name: prometheus-server
 description: A Helm chart for your existing Prometheus server
 type: application
 version: 0.1.0
-appVersion: "3.4.1"
+appVersion: "3.5.0"
