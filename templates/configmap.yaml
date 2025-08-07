@@ -48,9 +48,9 @@ data:
           - source_labels: [__meta_kubernetes_pod_name]
             target_label: pod
           - source_labels: [__address__]
-            target_label: address
-          - source_labels: [__meta_kubernetes_pod_node_name]
             target_label: instance
+          - source_labels: [__meta_kubernetes_pod_node_name]
+            target_label: node
 
       - job_name: 'kube-state-metrics'
         kubernetes_sd_configs:
